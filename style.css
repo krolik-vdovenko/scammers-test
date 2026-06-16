@@ -9,8 +9,8 @@
 body {
     font-family: 'Inter', sans-serif;
     min-height: 100vh;
+    position: relative; /* необходимо для корректного позиционирования псевдоэлемента с шумом */
     overflow-x: hidden;
-    position: relative;
     background: linear-gradient(135deg, #0a0a14, #1a0a2e, #0a0a1a);
     background-size: 400% 400%;
     animation: gradientShift 12s ease infinite;
@@ -42,9 +42,10 @@ body {
     100% { transform: translate(30px, 50px) scale(1.1); }
 }
 
+/* Шумовая текстура – теперь position: absolute, а не fixed, чтобы не ломался фон на мобильных */
 body::after {
     content: "";
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
